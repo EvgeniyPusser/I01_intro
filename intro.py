@@ -1,25 +1,13 @@
-
-def binary_search(arr, target):
-    low = 0
-    high = len(arr) - 1
+def max_negative_repr(numbers):
+    seen = set(numbers)
     result = -1
 
-    while low <= high:
-        mid = (low + high) // 2
-        if arr[mid] == target:
-            result = mid  # Запоминаем текущий найденный индекс
-            high = mid - 1  # И продолжаем искать левее
-        elif arr[mid] < target:
-            low = mid + 1
-        else:
-            high = mid - 1
+    for number in numbers:
+        if number > 0 and -number in seen:
+            result = max(result, number)
 
-    if result != -1:
-        return result
-
-    return -low - 1
-
-print(binary_search([1, 2, 2, 2, 3, 4, 4, 5], 2))
+    return result
 
 
-
+print(max_negative_repr([100, 4, 1, -1, -4, -100]))
+print(max_negative_repr([100, 4, 1, -2]))
